@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+    - name: "blog"
+    label: "Blogs"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+            - {label: "Titre", name: "title", widget: "string"}
+            - {label: "Date", name: "date", widget: "datetime"}
+            - {label: "Image", name: "image", widget: "image"}
+            - {label: "Contenu", name: "body", widget: "markdown"}
+
+    - name: "photos"
+    label: "Galerie Photos"
+    folder: "content/photos"
+    create: true
+    fields:
+            - {label: "Titre", name: "title", widget: "string"}
+            - {label: "Photo", name: "image", widget: "image"}
+            - {label: "Description", name: "body", widget: "text"}
+
+    - name: "videos"
+    label: "Vidéos"
+    folder: "content/videos"
+    create: true
+    fields:
+            - {label: "Titre", name: "title", widget: "string"}
+            - {label: "Lien YouTube", name: "video", widget: "string", hint: "Colle le lien YouTube ici"}
+            - {label: "Description", name: "body", widget: "text"}
+
+    - name: "musiques"
+    label: "Musiques"
+    folder: "content/musiques"
+    create: true
+    fields:
+            - {label: "Titre", name: "title", widget: "string"}
+            - {label: "Fichier Audio MP3", name: "audio", widget: "file"}
+            - {label: "Description", name: "body", widget: "text"}
