@@ -1,16 +1,6 @@
 backend:
   name: git-gateway
   branch: main
-
-media_folder: static/img
-public_folder: /img
-
 collections:
-    - name: "pages"
-    label: "Pages"
-    files:
-            - label: "Accueil"
-        name: "home"
-        file: "content/home.json"
-        fields:
-                    - {label: "Titre", name: "title", widget: "string"}
+    - name: test
+    label: Test
