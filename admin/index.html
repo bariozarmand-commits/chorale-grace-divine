@@ -6,7 +6,18 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+  <script src="https://unpkg.com/netlify-cms@^2.15.72/dist/netlify-cms.js"></script>
   <script>
     CMS.init({
       config: {
@@ -24,7 +35,45 @@
             create: true,
             fields: [
               {label: 'Titre', name: 'title', widget: 'string'},
+              {label: 'Date', name: 'date', widget: 'datetime'},
               {label: 'Paroles', name: 'body', widget: 'markdown'}
+            ]
+          },
+          {
+            name: 'musiques',
+            label: 'Musiques',
+            folder: 'content/musiques',
+            create: true,
+            fields: [
+              {label: 'Titre', name: 'title', widget: 'string'},
+              {label: 'Image', name: 'image', widget: 'image'},
+              {label: 'Fichier Audio', name: 'audio', widget: 'file'},
+              {label: 'Description', name: 'body', widget: 'markdown'}
+            ]
+          },
+          {
+            name: 'blog',
+            label: 'Blog',
+            folder: 'content/blog',
+            create: true,
+            slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+            fields: [
+              {label: 'Titre', name: 'title', widget: 'string'},
+              {label: 'Date', name: 'date', widget: 'datetime'},
+              {label: 'Image de couverture', name: 'image', widget: 'image'},
+              {label: 'Contenu', name: 'body', widget: 'markdown'}
+            ]
+          },
+          {
+            name: 'photos',
+            label: 'Photos',
+            folder: 'static/img/galerie',
+            create: true,
+            media_folder: '',
+            public_folder: '/img/galerie',
+            fields: [
+              {label: 'Titre', name: 'title', widget: 'string'},
+              {label: 'Image', name: 'image', widget: 'image'}
             ]
           }
         ]
