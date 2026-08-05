@@ -1,59 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <title>Admin Chorale</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Chorale Grâce Divine</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
-  <script src="https://unpkg.com/netlify-cms@^2.15.72/dist/netlify-cms.js"></script>
   <script>
     CMS.init({
       config: {
         backend: {
-          name: 'git-gateway',
+          name: 'github',
+          repo: 'barioz-armand/chorale-grace-divine', 
           branch: 'main'
         },
         media_folder: 'static/img',
         public_folder: '/img',
+        
         collections: [
-          {
-            name: 'chants',
-            label: 'Chants',
-            folder: 'content/chants',
-            create: true,
-            fields: [
-              {label: 'Titre', name: 'title', widget: 'string'},
-              {label: 'Date', name: 'date', widget: 'datetime'},
-              {label: 'Paroles', name: 'body', widget: 'markdown'}
-            ]
-          },
-          {
-            name: 'musiques',
-            label: 'Musiques',
-            folder: 'content/musiques',
-            create: true,
-            fields: [
-              {label: 'Titre', name: 'title', widget: 'string'},
-              {label: 'Image', name: 'image', widget: 'image'},
-              {label: 'Fichier Audio', name: 'audio', widget: 'file'},
-              {label: 'Description', name: 'body', widget: 'markdown'}
-            ]
-          },
+          
           {
             name: 'blog',
-            label: 'Blog',
+            label: 'Blogs & Annonces',
             folder: 'content/blog',
             create: true,
             slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
@@ -61,24 +30,56 @@
               {label: 'Titre', name: 'title', widget: 'string'},
               {label: 'Date', name: 'date', widget: 'datetime'},
               {label: 'Image de couverture', name: 'image', widget: 'image'},
+              {label: 'Résumé', name: 'summary', widget: 'text'},
               {label: 'Contenu', name: 'body', widget: 'markdown'}
             ]
           },
+          
+        
           {
-            name: 'photos',
-            label: 'Photos',
-            folder: 'static/img/galerie',
+            name: 'galerie',
+            label: 'Photos & Galerie',
+            folder: 'content/galerie',
             create: true,
-            media_folder: '',
-            public_folder: '/img/galerie',
             fields: [
-              {label: 'Titre', name: 'title', widget: 'string'},
-              {label: 'Image', name: 'image', widget: 'image'}
+              {label: 'Titre de la photo', name: 'title', widget: 'string'},
+              {label: 'Date', name: 'date', widget: 'date'},
+              {label: 'Photo', name: 'image', widget: 'image'},
+              {label: 'Description', name: 'description', widget: 'text'}
+            ]
+          },
+
+        
+          {
+            name: 'videos',
+            label: 'Vidéos',
+            folder: 'content/videos',
+            create: true,
+            fields: [
+              {label: 'Titre de la vidéo', name: 'title', widget: 'string'},
+              {label: 'Date', name: 'date', widget: 'date'},
+              {label: 'Lien YouTube', name: 'youtube', widget: 'string', hint: 'Colle le lien youtube.com/watch?v=...'},
+              {label: 'Miniature', name: 'thumbnail', widget: 'image', required: false},
+              {label: 'Description', name: 'description', widget: 'text'}
+            ]
+          },
+
+          {
+            name: 'musique',
+            label: 'Musiques & Chants',
+            folder: 'content/musique',
+            create: true,
+            fields: [
+              {label: 'Titre du chant', name: 'title', widget: 'string'},
+              {label: 'Auteur', name: 'auteur', widget: 'string'},
+              {label: 'Photo/Couverture', name: 'image', widget: 'image'},
+              {label: 'Fichier Audio MP3', name: 'audio', widget: 'file', hint: 'Upload le .mp3'},
+              {label: 'Paroles', name: 'body', widget: 'markdown'}
             ]
           }
         ]
       }
-    })
+    });
   </script>
 </body>
 </html>
