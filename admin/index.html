@@ -1,85 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Chorale Grâce Divine</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</head>
-<body>
-  <script>
-    CMS.init({
-      config: {
-        backend: {
-          name: 'github',
-          repo: 'barioz-armand/chorale-grace-divine', 
-          branch: 'main'
-        },
-        media_folder: 'static/img',
-        public_folder: '/img',
-        
-        collections: [
-          
-          {
-            name: 'blog',
-            label: 'Blogs & Annonces',
-            folder: 'content/blog',
-            create: true,
-            slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-            fields: [
-              {label: 'Titre', name: 'title', widget: 'string'},
-              {label: 'Date', name: 'date', widget: 'datetime'},
-              {label: 'Image de couverture', name: 'image', widget: 'image'},
-              {label: 'Résumé', name: 'summary', widget: 'text'},
-              {label: 'Contenu', name: 'body', widget: 'markdown'}
-            ]
-          },
-          
-        
-          {
-            name: 'galerie',
-            label: 'Photos & Galerie',
-            folder: 'content/galerie',
-            create: true,
-            fields: [
-              {label: 'Titre de la photo', name: 'title', widget: 'string'},
-              {label: 'Date', name: 'date', widget: 'date'},
-              {label: 'Photo', name: 'image', widget: 'image'},
-              {label: 'Description', name: 'description', widget: 'text'}
-            ]
-          },
-
-        
-          {
-            name: 'videos',
-            label: 'Vidéos',
-            folder: 'content/videos',
-            create: true,
-            fields: [
-              {label: 'Titre de la vidéo', name: 'title', widget: 'string'},
-              {label: 'Date', name: 'date', widget: 'date'},
-              {label: 'Lien YouTube', name: 'youtube', widget: 'string', hint: 'Colle le lien youtube.com/watch?v=...'},
-              {label: 'Miniature', name: 'thumbnail', widget: 'image', required: false},
-              {label: 'Description', name: 'description', widget: 'text'}
-            ]
-          },
-
-          {
-            name: 'musique',
-            label: 'Musiques & Chants',
-            folder: 'content/musique',
-            create: true,
-            fields: [
-              {label: 'Titre du chant', name: 'title', widget: 'string'},
-              {label: 'Auteur', name: 'auteur', widget: 'string'},
-              {label: 'Photo/Couverture', name: 'image', widget: 'image'},
-              {label: 'Fichier Audio MP3', name: 'audio', widget: 'file', hint: 'Upload le .mp3'},
-              {label: 'Paroles', name: 'body', widget: 'markdown'}
-            ]
-          }
+<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+<script>
+CMS.init({
+  config: {
+    backend: {
+      name: 'github',
+      repo: 'bari ozarmand-commits/chorale-grace-divine'
+      branch: 'main'
+    },
+    media_folder: 'content/image',
+    public_folder: '/content/image',
+    collections: [
+      {
+        name: 'blog',
+        label: 'Blog',
+        folder: 'content/blog', // va créer blog tout seul
+        create: true,
+        fields: [
+          {label: 'Titre', name: 'title', widget: 'string'},
+          {label: 'Corps', name: 'body', widget: 'markdown'}
+        ]
+      },
+      {
+        name: 'galerie',
+        label: 'Galerie',
+        folder: 'content/galerie',
+        create: true,
+        fields: [
+          {label: 'Image', name: 'image', widget: 'image'},
+          {label: 'Légende', name: 'title', widget: 'string'}
+        ]
+      },
+      {
+        name: 'videos',
+        label: 'Vidéos',
+        folder: 'content/videos',
+        create: true,
+        fields: [
+          {label: 'Titre', name: 'title', widget: 'string'},
+          {label: 'Lien', name: 'video', widget: 'string'}
+        ]
+      },
+      {
+        name: 'musique',
+        label: 'Musique',
+        folder: 'content/musique',
+        create: true,
+        fields: [
+          {label: 'Titre', name: 'title', widget: 'string'},
+          {label: 'Audio', name: 'audio', widget: 'file'}
         ]
       }
-    });
-  </script>
-</body>
-</html>
+    ]
+  }
+});
+</script>
